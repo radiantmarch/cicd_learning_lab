@@ -8,7 +8,7 @@
 
 ----
 
-# CICD Learning Lab (Privately Modified by radiantmarch)
+# CICD Learning Lab (2017/2/22 ハンズオン用)
 
 ![](images/stage_final_diagram.png)
 
