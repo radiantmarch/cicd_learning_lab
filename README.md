@@ -900,6 +900,7 @@ Okay, so drone said it did something... but you may be wondering what actually h
 [item]: # (slide)
 
 # Install your application
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 Now that we have used CICD to automate the creation of a Docker container for our application, we can now deploy our application.  This step could certainly be automated as well, but in this lab we will manually install our application to illustrate the process and rely on automation to keep it up to date.
 
@@ -1284,6 +1285,7 @@ Okay, so drone said it did something... but you may be wondering what actually h
 [item]: # (slide)
 
 # Monitor and Notify Phase
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 In this step, we will configure the job to send a notification to the Spark room indicating whether the build was successful or failed.
 
@@ -1699,6 +1701,7 @@ Okay, so let's review the steps in the full pipeline.
 [item]: # (slide)
 
 # CleanUp - Uninstall your Application
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 [item]: # (/slide)
 
@@ -1736,15 +1739,16 @@ Please provide the following details on your lab environment.
 
 What is the address of your Mantl Control Server?
 eg: control.mantl.internet.com
-control.mantl.domain.com
+control.sandbox.imapex.io
 
 What is the username for your Mantl account?
-admin
+CICD1
 
 What is the password for your Mantl account?
+CICD1
 
 What is the your Docker Username?
-hpreston
+(自分のユーザ名)
 
 Uninstalling the demoapp at class/hpreston
 {"version":"2016-07-01T13:26:43.421Z","deploymentId":"731e0df3-056c-4340-ae03-f5155a5e3b50"}
