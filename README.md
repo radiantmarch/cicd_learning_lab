@@ -305,8 +305,8 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 [アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 以下はコンテナ内で作業します. 
->> Tips: SSH で Virtual Box VM にログインして実施しても OK. 
-(別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
+	* Tips: SSH で Virtual Box VM にログインして実施しても OK. 
+	(別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
 
 With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration.
 
@@ -457,8 +457,6 @@ environment:
   MANTL_USERNAME: CICD1
   MANTL_PASSWORD: CICD1
   MANTL_CONTROL: control.sandbox.imapex.io
-  DRONE_SERVER: http://drone.lab.apps.imapex.io/
-  DRONE_TOKEN: <drone コンソールから取得>
 ```
 
 <!-- 
@@ -564,7 +562,7 @@ cd ~/coding/cicd_demoapp
       MANTL_CONTROL: <MANTL SERVER ADDRESS PROVIDED BY LAB ADMIN>
     ```
 
->> コロンの後のシングルスペースに注意
+	* コロンの後のシングルスペースに注意
 
 
 [item]: # (/slide)
