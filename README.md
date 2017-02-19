@@ -21,7 +21,7 @@ A slide show version of this presentation is available at this link: [CICD Learn
 
 ## Lab Agenda
 
-0. [Introduction](#introduction)
+0. [Introduction](cicd_learning_lab#introduction)
 1. [Environment Prep](environment_prep.md)
 2. [Stage 1 - Continuous Integration](cicd_stage_1.md)
 3. [Stage 2 - Continuous Delivery](cicd_stage_2.md)
