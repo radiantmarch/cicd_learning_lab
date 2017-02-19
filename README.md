@@ -13,7 +13,7 @@
 ![](images/stage_final_diagram.png)
 
 この README は、2016/12月のSEVTで行われた CI/CD ラボを、リデリバリ用に内容を修正したものです. 
-元の README は [](https://github.com/imapex-training/cicd_learning_lab) を参照してください
+元の README は https://github.com/imapex-training/cicd_learning_lab を参照してください
 
 [item]: # (/slide)
 
@@ -268,13 +268,12 @@ SPARK_TOKEN は https://developer.ciscospark.com/# にログインして自分�
 ## (参考) Spark RoomId の取得方法
 いろいろな方法があるようですが、Mac の場合 Terminal を開いて以下を実行すればゲットできます
 ```
-$
 $ SPARK_TOKEN=<自分のトークン>
 $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}"
 << これで Room 一覧が json 形式で表示される
+<< 一覧の中から Room 名の含まれるエントリを探し、"id" のエントリの値をコピーする
 
-<< 一覧の中から Room 名の含まれるエントリを探し、
-# jq コマンドが使える場合は
+## jq コマンドが使える場合は
 $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}" | jq . -a rooms.txt
 << テキストに書き出して検索すると見やすい
 << 出力例
@@ -292,32 +291,6 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 
 [item]: # (/slide)
 
-
-<!-- For this lab you will be leveraging a Lab Mantl Instance and Drone Build Server.  Your lab admin will provide the following information.  Make a note of these details as you will need them periodically during the following lab exercises.
-
-**_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-``` -->
-
 [item]: # (slide)
 
 
@@ -325,8 +298,8 @@ docker start -i cicdlab
 
 # Environment Prep
 
-以下はコンテナ内で作業します
-SSH で Virtual Box VM にログインして実施しても OK
+以下はコンテナ内で作業します. 
+SSH で Virtual Box VM にログインして実施しても OK.
 
 With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration.
 
@@ -361,6 +334,7 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 [item]: # (slide)
 
 **Cloning**
+
 ※ コンテナ内での作業
 
 ```
@@ -433,7 +407,7 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 ### Steps
 ※ コンテナ内での作業
 
-1. **Make sure the lab administrator has enabled your GitHub account on the lab server.**
+1. **Make sure the lab administrator has enabled your GitHub account on the lab server.** (今回はスキップしてOK)
 2. Navigate to the drone server address provided by the lab administrator, and click **Login**.
 
     ![Drone Login](images/drone_login.png)
@@ -462,7 +436,21 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 [item]: # (slide)
 
 ## Build Secrets File
+シークレットファイルを作成します. 必要な情報をメモしてください
 
+```
+environment:
+  SPARK_TOKEN: <当日講師が説明>
+  SPARK_ROOM: <当日講師が説明>
+  DOCKER_USERNAME: 自身で作成した docker.com アカウントのユーザ名
+  DOCKER_PASSWORD: 自身で作成した docker.com アカウントのパスワード
+  DOCKER_EMAIL: 自身で作成した docker.com アカウントの Email アドレス
+  MANTL_USERNAME: CICD1
+  MANTL_PASSWORD: CICD1
+  MANTL_CONTROL: control.sandbox.imapex.io
+```
+
+<!-- 
 ```
 environment:
   SPARK_TOKEN: <FROM YOUR DEVELOPER.CISCOSPARK.COM ACCOUNT>
@@ -474,6 +462,7 @@ environment:
   MANTL_PASSWORD: <MANTL PASSWORD PROVIDED BY LAB ADMIN>
   MANTL_CONTROL: <MANTL SERVER ADDRESS PROVIDED BY LAB ADMIN>
 ```
+ -->
 
 [item]: # (/slide)
 
@@ -619,28 +608,6 @@ git push
 
 [item]: # (/slide)
 
-**_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-```
 
 [item]: # (slide)
 
@@ -784,32 +751,9 @@ Okay, so drone said it did something... but you may be wondering what actually h
 
 ---
 
-**_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-```
-
 [item]: # (slide)
 
-## CICD Stage 2: Continuous Delivery
+# CICD Stage 2: Continuous Delivery
 
 In this step, we will take our successfully tested application, build a Docker Container, and publish it to a docker registry where it can be used as an artifact for our application.
 
@@ -940,29 +884,6 @@ Okay, so drone said it did something... but you may be wondering what actually h
   * Push the container up to hub.docker.com using the credentials contained in the secrets file
 
 ---
-
-**_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-```
 
 [item]: # (slide)
 
@@ -1197,29 +1118,6 @@ Okay, so building on the process from the previous step, this diagram shows what
 
 ---
 
-**_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-```
-
 [item]: # (slide)
 
 ## CICD Stage 3: Continuous Deployment
@@ -1369,27 +1267,6 @@ Okay, so drone said it did something... but you may be wondering what actually h
 ---
 
 **_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-```
 
 [item]: # (slide)
 
@@ -1548,28 +1425,6 @@ Okay, so drone said it did something and we got a Spark message... but you may b
 
 ---
  
-**_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
-
-#### Reminder: Working in the docker container
-
-```
-# Start a clean instance of the container
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
-[root@cf95a414877e coding]# exit
-
-# If you need to restart an exited container
-# Verify that you have  a container in a stopped state
-docker ps -a
-
-CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
-cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
-
-# Restart your stopped container
-docker start -i cicdlab
-
-[root@cf95a414877e coding]#
-```
 
 [item]: # (slide)
 
