@@ -27,7 +27,8 @@ A slide show version of this presentation is available at this link: [CICD Learn
 ----
 
 # Lab Agenda
-Here are links to each part of the lab.  They do build on each other so be sure to go in order.
+以下の順番にラボを進めます
+<!-- Here are links to each part of the lab.  They do build on each other so be sure to go in order. -->
 
 0. [Introduction](https://github.com/radiantmarch/cicd_learning_lab#introduction)
 0. [Prerequisites](https://github.com/radiantmarch/cicd_learning_lab#prerequisites)
@@ -71,7 +72,7 @@ This lab is intended to be an introduction to setting up a very basic CI/CD (Con
 
 [item]: # (/slide)
 
-ラボを開始する前に以下をお読みいただき準備をお願いします
+ラボを開始する前に以下を読んで準備をお願いします
 * [Cloud SEVT リデリバリ- CI/CD ハンズオン 事前準備](https://cisco.jiveon.com/docs/DOC-1691497)
 
 このラボを進めるためには、以下のいくつかのサービスサイトのアカウントが必要です（すべてフリーアカウントでOK）
@@ -108,64 +109,6 @@ Mac / Windows で共通の手順にするため、Virtual Box を利用する方
 
 [item]: # (slide)
 
-<!-- ### Option 1: Leverage your Native Workstation
-
-If you will be completing the lab using your native workstation, you will need to ensure the following components are installed and functioning correctly.
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-* git
-  * command line tools required
-  * GUI clients optional
-  * Installation Instructions: [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-* docker
-  * for platforms with native docker available (ie Linux/Mac) having the docker daemon installed and running can be used
-  * docker-machine is also fully acceptable for this lab
-  * Installation Instructions: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/)
-    * Optionally, you can install the full Docker toolbox for [Mac](https://docs.docker.com/v1.10/mac/), [Linux](https://docs.docker.com/v1.10/linux/), or [Windows](https://docs.docker.com/v1.10/windows/)
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-* Python 2.7
-  * Installation Instructions: [https://www.python.org/downloads/](https://www.python.org/downloads/)
-    * If you already have Python 3.x installed, you may still need to install 2.7. 
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-* drone command line tools
-  * drone is the CICD tool used for this lab, and the command line tools are used to properly secure the secret information (i.e. userids, passwords) used for all the services utilized
-  * _the tools require docker to be installed and working_
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-* Installation Instructions: [http://readme.drone.io/0.4/devs/cli/](http://readme.drone.io/0.4/devs/cli/) 
-* Basic Installation Steps
-* Linux
-  * `curl http://downloads.drone.io/drone-cli/drone_linux_amd64.tar.gz | tar zx`
-  * `sudo install -t /usr/local/bin drone`
-* Mac
-  * `curl http://downloads.drone.io/drone-cli/drone_darwin_amd64.tar.gz | tar zx`
-  * `sudo cp drone /usr/local/bin`
-
-***This lab uses Drone version 0.4.  Drone 0.5 is the latest release which introduced new concepts.  Check back later when this lab is updated to reflect 0.5***
-
-[item]: # (/slide)
-
-[item]: # (slide) -->
-
 ### Option: Run the Lab within a Container
 
 以下のサイトの通り、Virtual Box をインストールして推奨設定を済ませて下さい
@@ -173,8 +116,7 @@ If you will be completing the lab using your native workstation, you will need t
 
 <!-- [hpreston/devbox](https://hub.docker.com/r/hpreston/devbox) -->
 
-Virtual Box でデプロイした VM (名前: Development Sandbox) を起動します
-起動したら VM コンソール画面に入り、ログインします
+Virtual Box でデプロイした VM (名前: Development Sandbox) を起動します。起動したら VM コンソール画面に入り、ログインします
 * ユーザ名: devbox
 * パスワード: devbox
 
@@ -224,8 +166,6 @@ docker ps -a
 CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
 cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
 
-----
-
 # Restart your stopped container
 docker start -i cicdlab
 
@@ -248,7 +188,7 @@ docker start -i cicdlab
 # CICD Learning Lab Infrastructure Details
 
 # Lab Guide
-改変版: https://github.com/radiantmarch/cicd_learning_lab 
+ハンズオン向け改変版: https://github.com/radiantmarch/cicd_learning_lab 
 オリジナル: https://github.com/imapex-training/cicd_learning_lab/blob/master/README.md
 
 # Build Server
@@ -278,7 +218,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 << これで Room 一覧が json 形式で表示される
 << 一覧の中から Room 名の含まれるエントリを探し、"id" のエントリの値をコピーする
 
-## jq コマンドが使える場合は以下が便利です
+## jq コマンドが使える場合は以下が便利
 $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}" | jq . -a rooms.txt
 << テキストに書き出して検索すると見やすい
 << 出力例
@@ -305,6 +245,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 [アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 以下はコンテナ内で作業します. 
+
 	* Tips: SSH で Virtual Box VM にログインして実施しても OK. 
 	(別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
 
