@@ -257,7 +257,7 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 
 ## Forking the cicd_demoapp GitHub Repo
 
-今回デプロイするアプリ cicd_demoapp のソースを GitHub 上で Folk します
+今回デプロイするアプリ cicd_demoapp のソースを GitHub 上で Fork します
 
 ![GitHub Fork](images/github_fork.png)
 
