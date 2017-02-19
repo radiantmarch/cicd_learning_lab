@@ -6,7 +6,7 @@
 
 [item]: # (slide)
 
-# CICD Learning Lab
+# CICD Learning Lab (Privately Modified by radiantmarch)
 
 ![](images/stage_final_diagram.png)
 
