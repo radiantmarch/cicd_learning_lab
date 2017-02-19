@@ -63,51 +63,44 @@ This lab is intended to be an introduction to setting up a very basic CI/CD (Con
 
 [item]: # (/slide)
 
-To run through this lab, you will need to have accounts (all free) created with the following services, as well as a set of tools properly setup on your laptop or workstation.
+ラボを開始する前に以下をお読みいただき準備をお願いします
+* [Cloud SEVT リデリバリ- CI/CD ハンズオン 事前準備](https://cisco.jiveon.com/docs/DOC-1691497)
+
+このラボを進めるためには、以下のいくつかのサービスサイトのアカウントが必要です（すべてフリーアカウントでOK）
+<!-- To run through this lab, you will need to have accounts (all free) created with the following services, as well as a set of tools properly setup on your laptop or workstation. -->
 
 [item]: # (slide)
 
 ## Accounts
 
 * [github.com](https://github.com)
+	* 自身のフリーアカウントを作成してログイン
+	* Note if you are using 2FA for your GitHub account, let the admin know, as that will change how you do authentication later in the lab exerices.
+
 * [hub.docker.com](http://hub.docker.com)
+	* 自身のフリーアカウントを作成してログイン
+
+[item]: # (/slide)
+
 * [CiscoSpark.com](http://CiscoSpark.com) Developer Token
-
-    ![Spark Token](images/spark_token.png)
-
-[item]: # (/slide)
-
-* You will also use your Spark login to retrieve the Spark API token. 
-* Go to [developer.ciscospark.com](http://developer.ciscospark.com), where you will find your token by logging into the developer portal, clicking on your image in the upper right corner, and clicking **Copy**
-
-[item]: # (slide)
-
-* Note if you are using 2FA for your GitHub account, let the admin know, as that will change how you do authentication later in the lab exerices.
-
-[item]: # (/slide)
+	* Cisco社員は CEC パスワードでログインでOK
+    * ![Spark Token](images/spark_token.png)
+	* You will also use your Spark login to retrieve the Spark API token. 
+	* Go to [developer.ciscospark.com](http://developer.ciscospark.com), where you will find your token by logging into the developer portal, clicking on your image in the upper right corner, and clicking **Copy**
 
 [item]: # (slide)
 
 ## Laptop or Workstation
 
-To successfully complete this lab, you must have a supported working environment (i.e. laptop/workstation).  There are two options for meeting this requirement:
+Mac / Windows で共通の手順にするため、Virtual Box を利用する方法に統一しています
 
-1. Natively use your own workstation by installing and configuring the below list of software and utilities.
-2. Run the lab within the provided Docker container to avoid the need to install additional software on your workstation.
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-* **_For this option, you will need to have the ability to run a Docker container on your workstation.  Options for this include native Docker installation, boot2docker, or docker-machine options._**
-
-* _Though Windows Operation Systems are becoming more common with developers, and many development tools and utilities are being made available natively for Windows users, the exercises in this lab are **NOT** supported on Windows Natively.  If you are working from a Windows machine, please use the provided Docker Container option._
+※ Mac/Windows ネイティブ環境で利用する方法については [元のラボ資料](https://github.com/imapex-training/cicd_learning_lab) のほうを参照してください
 
 [item]: # (/slide)
 
 [item]: # (slide)
 
-### Option 1: Leverage your Native Workstation
+<!-- ### Option 1: Leverage your Native Workstation
 
 If you will be completing the lab using your native workstation, you will need to ensure the following components are installed and functioning correctly.
 
@@ -163,9 +156,12 @@ If you will be completing the lab using your native workstation, you will need t
 
 [item]: # (/slide)
 
-[item]: # (slide)
+[item]: # (slide) -->
 
-### Option 2: Run the Lab within a Container
+### Option: Run the Lab within a Container
+
+以下のサイトの通り、Virtual Box をインストールして推奨設定を済ませて下さい
+* [Cloud SEVT リデリバリ- CI/CD ハンズオン 事前準備](https://cisco.jiveon.com/docs/DOC-1691497)
 
 [hpreston/devbox](https://hub.docker.com/r/hpreston/devbox)
 
