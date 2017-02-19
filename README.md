@@ -184,8 +184,10 @@ Virtual Box でデプロイした VM (名前: Development Sandbox) を起動し�
 ```
 
 もしそうなっていない場合は以下の手順を実行します
+
 0. デスクトップアイコンからターミナルを起動する
 0. 以下のコマンドを実行
+
 ```
 [devbox@devbox ~]$ docker run -it --name cicdlab hpreston/devbox:cicdlab
 [devbox@devbox ~]$ docker start -i cicdlab
@@ -243,6 +245,7 @@ docker start -i cicdlab
 
 ```
 # CICD Learning Lab Infrastructure Details
+<!-- https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details -->
 
 # Lab Guide
 改変版: https://github.com/radiantmarch/cicd_learning_lab 
@@ -302,7 +305,9 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 [アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 以下はコンテナ内で作業します. 
-SSH で Virtual Box VM にログインして実施しても OK.
+
+Tips: SSH で Virtual Box VM にログインして実施しても OK. 
+(別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
 
 With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration.
 
@@ -439,7 +444,8 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 [item]: # (slide)
 
 ## Build Secrets File
-シークレットファイルを作成します. 必要な情報をメモしてください
+シークレットファイルを作成します. 必要な情報をメモしてください.
+上記の [ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照してください.
 
 ```
 environment:
@@ -489,6 +495,7 @@ cd ~/coding/cicd_demoapp
 ※ コンテナ内での作業
 
 1. The drone utilities on your laptop need to know the address and access information for the drone server you are using.  We use session environment variables for this. You will replace the variable's value with the information the lab admin gives you. The follow code can be copied and pasted directly into a terminal window if you'd like to do that, but you can also just type in the line that doesn't start with the hash mark.
+[ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照
 
     ```
     # Configure the drone server address,
@@ -508,7 +515,7 @@ cd ~/coding/cicd_demoapp
 
 [item]: # (slide)
 
-3.  Copy/Paste or execute this command to store the value in your terminal session.
+3.  Copy/Paste or execute this command to store the value in your terminal session. [ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照
 
     ```
     # Configure your token
@@ -541,7 +548,9 @@ cd ~/coding/cicd_demoapp
 
 [item]: # (slide)
 
-5. Edit the copied file in whatever IDE or editor you prefer.  You'll need to provide the details on each line of the file.  This is a YML format, so be sure to maintain proper spacing, including a single space after the colon in each line.
+5. Edit the copied file in whatever IDE or editor you prefer.  You'll need to provide the details on each line of the file.  This is a YML format, so be sure to maintain proper spacing, including a single space after the colon in each line. 
+[Secrets File](https://github.com/radiantmarch/cicd_learning_lab#build-secrets-file) 参照.
+[ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照
 
     ```
     environment:
