@@ -185,7 +185,7 @@ Virtual Box でデプロイした VM (名前: Development Sandbox) を起動し�
 
 もしそうなっていない場合は以下の手順を実行します
 
-0. デスクトップアイコンからターミナルを起動する
+0. Virtual Box VM のデスクトップアイコンからターミナルを起動する
 0. 以下のコマンドを実行
 
 ```
@@ -194,7 +194,7 @@ Virtual Box でデプロイした VM (名前: Development Sandbox) を起動し�
 [root@c0b2cc5a69fa coding]#  <<< Linux コンテナ内に入った
 ```
 
-このコンテナは Linux ベースの作業環境で、以下のツールがすでにインストール済みです
+このコンテナは Linux ベースの作業環境で、以下のツールがすでにインストール済み
 
 * nano 
 	* Provided as a text editor to use for executing the lab steps
@@ -242,10 +242,10 @@ docker start -i cicdlab
 ラボを進める中で必要なので適宜参照してください
 
 <!-- Your instructor will provide you an TXT file with this content needed to complete the lab.   -->
+<!-- https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details -->
 
 ```
 # CICD Learning Lab Infrastructure Details
-<!-- https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details -->
 
 # Lab Guide
 改変版: https://github.com/radiantmarch/cicd_learning_lab 
@@ -278,7 +278,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 << これで Room 一覧が json 形式で表示される
 << 一覧の中から Room 名の含まれるエントリを探し、"id" のエントリの値をコピーする
 
-## jq コマンドが使える場合は
+## jq コマンドが使える場合は以下が便利です
 $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}" | jq . -a rooms.txt
 << テキストに書き出して検索すると見やすい
 << 出力例
@@ -305,8 +305,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 [アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 以下はコンテナ内で作業します. 
-
-Tips: SSH で Virtual Box VM にログインして実施しても OK. 
+>> Tips: SSH で Virtual Box VM にログインして実施しても OK. 
 (別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
 
 With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration.
@@ -413,12 +412,13 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 [item]: # (slide)
 
 ### Steps
-※ コンテナ内での作業
 
 1. **Make sure the lab administrator has enabled your GitHub account on the lab server.** (今回はスキップしてOK)
 2. Navigate to the drone server address provided by the lab administrator, and click **Login**.
 
     ![Drone Login](images/drone_login.png)
+
+    * http://drone.lab.apps.imapex.io/
 
 [item]: # (/slide)
 
@@ -457,6 +457,8 @@ environment:
   MANTL_USERNAME: CICD1
   MANTL_PASSWORD: CICD1
   MANTL_CONTROL: control.sandbox.imapex.io
+  DRONE_SERVER: http://drone.lab.apps.imapex.io/
+  DRONE_TOKEN: <drone コンソールから取得>
 ```
 
 <!-- 
@@ -495,12 +497,11 @@ cd ~/coding/cicd_demoapp
 ※ コンテナ内での作業
 
 1. The drone utilities on your laptop need to know the address and access information for the drone server you are using.  We use session environment variables for this. You will replace the variable's value with the information the lab admin gives you. The follow code can be copied and pasted directly into a terminal window if you'd like to do that, but you can also just type in the line that doesn't start with the hash mark.
-[ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照
 
     ```
     # Configure the drone server address,
     # Use the address provided by the lab administrator
-    export DRONE_SERVER=http://DRONE_SERVER
+    export DRONE_SERVER=http://drone.lab.apps.imapex.io/
     ```
 
 [item]: # (/slide)
@@ -515,7 +516,7 @@ cd ~/coding/cicd_demoapp
 
 [item]: # (slide)
 
-3.  Copy/Paste or execute this command to store the value in your terminal session. [ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照
+3.  Copy/Paste or execute this command to store the value in your terminal session.
 
     ```
     # Configure your token
@@ -548,9 +549,8 @@ cd ~/coding/cicd_demoapp
 
 [item]: # (slide)
 
-5. Edit the copied file in whatever IDE or editor you prefer.  You'll need to provide the details on each line of the file.  This is a YML format, so be sure to maintain proper spacing, including a single space after the colon in each line. 
+5. Edit the copied file in whatever IDE or editor you prefer.  You'll need to provide the details on each line of the file.  This is a YML format, so be sure to maintain proper spacing, **including a single space after the colon in each line**. 
 [Secrets File](https://github.com/radiantmarch/cicd_learning_lab#build-secrets-file) 参照.
-[ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照
 
     ```
     environment:
@@ -563,6 +563,9 @@ cd ~/coding/cicd_demoapp
       MANTL_PASSWORD: <MANTL PASSWORD PROVIDED BY LAB ADMIN>
       MANTL_CONTROL: <MANTL SERVER ADDRESS PROVIDED BY LAB ADMIN>
     ```
+
+>> コロンの後のシングルスペースに注意
+
 
 [item]: # (/slide)
 
@@ -614,17 +617,14 @@ git push
 
 [item]: # (/slide)
 
-[item]: # (slide)
-
-**In each of the following steps, you will be repeating the steps to secure your secrets.  If you close your terminal window, you will need to re-export the DRONE_SERVER and DRONE_TOKEN values**
-
-[item]: # (/slide)
-
 
 [item]: # (slide)
 
 # CICD Stage 1: Continuous Integration
+
 [アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
+
+**In each of the following steps, you will be repeating the steps to secure your secrets.  If you close your terminal window, you will need to re-export the DRONE_SERVER and DRONE_TOKEN values**
 
 The first step of the CICD process is to react to new code commits and test the changes against the larger application needs.  In this lab, we will configure drone to send an alert to a Spark room each time a commit has been made.
 
