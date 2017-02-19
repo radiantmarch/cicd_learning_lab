@@ -27,6 +27,7 @@ A slide show version of this presentation is available at this link: [CICD Learn
 ----
 
 # Lab Agenda
+Here are links to each part of the lab.  They do build on each other so be sure to go in order.
 
 0. [Introduction](https://github.com/radiantmarch/cicd_learning_lab#introduction)
 0. [Prerequisites](https://github.com/radiantmarch/cicd_learning_lab#prerequisites)
@@ -42,11 +43,11 @@ A slide show version of this presentation is available at this link: [CICD Learn
 
 [item]: # (/slide)
 
-Here are links to each part of the lab.  They do build on each other so be sure to go in order.
 
 [item]: # (slide)
 
 # Introduction
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 ![](images/labcomponents.png)
 
@@ -66,6 +67,7 @@ This lab is intended to be an introduction to setting up a very basic CI/CD (Con
 [item]: # (slide)
 
 # Prerequisites
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 [item]: # (/slide)
 
@@ -234,7 +236,7 @@ docker start -i cicdlab
 
 ## Lab Environment Details
 
-今回のラボ環境の情報は以下の通りです
+今回のラボ環境の情報は以下の通りです.
 ラボを進める中で必要なので適宜参照してください
 
 <!-- Your instructor will provide you an TXT file with this content needed to complete the lab.   -->
@@ -297,6 +299,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 ---
 
 # Environment Prep
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 以下はコンテナ内で作業します. 
 SSH で Virtual Box VM にログインして実施しても OK.
@@ -612,6 +615,7 @@ git push
 [item]: # (slide)
 
 # CICD Stage 1: Continuous Integration
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 The first step of the CICD process is to react to new code commits and test the changes against the larger application needs.  In this lab, we will configure drone to send an alert to a Spark room each time a commit has been made.
 
@@ -754,6 +758,7 @@ Okay, so drone said it did something... but you may be wondering what actually h
 [item]: # (slide)
 
 # CICD Stage 2: Continuous Delivery
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 In this step, we will take our successfully tested application, build a Docker Container, and publish it to a docker registry where it can be used as an artifact for our application.
 
@@ -1120,7 +1125,8 @@ Okay, so building on the process from the previous step, this diagram shows what
 
 [item]: # (slide)
 
-## CICD Stage 3: Continuous Deployment
+# CICD Stage 3: Continuous Deployment
+[アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
 In this step, we will automatically deploy our changes by issuing a restart command to Marathon that will pull down the new docker container.
 
@@ -1270,7 +1276,7 @@ Okay, so drone said it did something... but you may be wondering what actually h
 
 [item]: # (slide)
 
-## Monitor and Notify Phase
+# Monitor and Notify Phase
 
 In this step, we will configure the job to send a notification to the Spark room indicating whether the build was successful or failed.
 
@@ -1685,7 +1691,7 @@ Okay, so let's review the steps in the full pipeline.
 --- 
 [item]: # (slide)
 
-## CleanUp - Uninstall your Application
+# CleanUp - Uninstall your Application
 
 [item]: # (/slide)
 
