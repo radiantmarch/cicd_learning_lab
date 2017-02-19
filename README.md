@@ -13,23 +13,27 @@
 
 [item]: # (/slide)
 
-### Presentation Slides
+<!-- ### Presentation Slides
 
 A slide show version of this presentation is available at this link: [CICD Learning Lab Slides](https://rawgit.com/imapex-training/cicd_learning_lab/master/output/index.html#/)
+ -->
 
 [item]: # (slide)
 
 ## Lab Agenda
 
-0. [Introduction](cicd_learning_lab#introduction)
-1. [Environment Prep](environment_prep.md)
-2. [Stage 1 - Continuous Integration](cicd_stage_1.md)
-3. [Stage 2 - Continuous Delivery](cicd_stage_2.md)
-4. [Install the Application](app_install.md)
-5. [Stage 3 - Continuous Deployment](cicd_stage_3.md)
-6. [Stage 4 - Monitoring and Notify Phase](notify_phase.md)
-7. [Bonus - CICD In Action!](bonus.md)
-8. [Clean-Up](cleanup.md)
+0. [Introduction](https://github.com/radiantmarch/cicd_learning_lab#introduction)
+0. [Prerequisites](https://github.com/radiantmarch/cicd_learning_lab#prerequisites)
+1. [Environment Prep](https://github.com/radiantmarch/cicd_learning_lab#environment-prep)
+2. [Stage 1 - Continuous Integration](https://github.com/radiantmarch/cicd_learning_lab#cicd-stage-1-continuous-integration)
+3. [Stage 2 - Continuous Delivery](https://github.com/radiantmarch/cicd_learning_lab#cicd-stage-2-continuous-delivery)
+4. [Install the Application](https://github.com/radiantmarch/cicd_learning_lab#install-your-application)
+5. [Stage 3 - Continuous Deployment](https://github.com/radiantmarch/cicd_learning_lab#cicd-stage-3-continuous-deployment)
+6. [Stage 4 - Monitoring and Notify Phase](https://github.com/radiantmarch/cicd_learning_lab#monitor-and-notify-phase)
+
+<!-- 7. [Bonus - CICD In Action!](bonus.md) -->
+
+8. [Clean-Up](https://github.com/radiantmarch/cicd_learning_lab#monitor-and-notify-phase)
 
 [item]: # (/slide)
 
