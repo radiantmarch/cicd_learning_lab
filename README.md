@@ -30,10 +30,9 @@ A slide show version of this presentation is available at this link: [CICD Learn
 4. [Install the Application](https://github.com/radiantmarch/cicd_learning_lab#install-your-application)
 5. [Stage 3 - Continuous Deployment](https://github.com/radiantmarch/cicd_learning_lab#cicd-stage-3-continuous-deployment)
 6. [Stage 4 - Monitoring and Notify Phase](https://github.com/radiantmarch/cicd_learning_lab#monitor-and-notify-phase)
+8. [Clean-Up](https://github.com/radiantmarch/cicd_learning_lab#cleanup---uninstall-your-application)
 
 <!-- 7. [Bonus - CICD In Action!](bonus.md) -->
-
-8. [Clean-Up](https://github.com/radiantmarch/cicd_learning_lab#monitor-and-notify-phase)
 
 [item]: # (/slide)
 
