@@ -6,10 +6,14 @@
 
 [item]: # (slide)
 
+----
+
 # CICD Learning Lab (Privately Modified by radiantmarch)
 
 ![](images/stage_final_diagram.png)
 
+この README は、2016/12月のSEVTで行われた CI/CD ラボを、リデリバリ用に内容を修正したものです. 
+元の README は [](https://github.com/imapex-training/cicd_learning_lab) を参照してください
 
 [item]: # (/slide)
 
@@ -20,7 +24,9 @@ A slide show version of this presentation is available at this link: [CICD Learn
 
 [item]: # (slide)
 
-## Lab Agenda
+----
+
+# Lab Agenda
 
 0. [Introduction](https://github.com/radiantmarch/cicd_learning_lab#introduction)
 0. [Prerequisites](https://github.com/radiantmarch/cicd_learning_lab#prerequisites)
@@ -40,7 +46,7 @@ Here are links to each part of the lab.  They do build on each other so be sure 
 
 [item]: # (slide)
 
-## Introduction
+# Introduction
 
 ![](images/labcomponents.png)
 
@@ -94,7 +100,7 @@ This lab is intended to be an introduction to setting up a very basic CI/CD (Con
 
 Mac / Windows で共通の手順にするため、Virtual Box を利用する方法に統一しています
 
-※ Mac/Windows ネイティブ環境で利用する方法については [元のラボ資料](https://github.com/imapex-training/cicd_learning_lab) のほうを参照してください
+※ Mac/Windows ネイティブ環境で利用する方法については [元のラボ資料](https://github.com/imapex-training/cicd_learning_lab) のほうを参照してください. または近くの講師に相談ください
 
 [item]: # (/slide)
 
@@ -163,29 +169,28 @@ If you will be completing the lab using your native workstation, you will need t
 以下のサイトの通り、Virtual Box をインストールして推奨設定を済ませて下さい
 * [Cloud SEVT リデリバリ- CI/CD ハンズオン 事前準備](https://cisco.jiveon.com/docs/DOC-1691497)
 
-[hpreston/devbox](https://hub.docker.com/r/hpreston/devbox)
+<!-- [hpreston/devbox](https://hub.docker.com/r/hpreston/devbox) -->
 
-If your workstation is Windows based, or you prefer to NOT use your native workstation, you can run the lab exercises from within a Docker container.  
+Virtual Box でデプロイした VM (名前: Development Sandbox) を起動します
+起動したら VM コンソール画面に入り、ログインします
+* ユーザ名: devbox
+* パスワード: devbox
 
-**_To use this method, you will need to be able to run a Docker container on a host machine somewhere._**
-
-[item]: # (/slide)
-
-[item]: # (slide)
-
-From your Docker host, run the following command to pull down and enter an interactive shell on the provided development container.
-
+最初からコンソールが開いていて、以下のようなプロンプトになっているはずです
 ```
-# It may take some time to complete this command while the full container is downloaded
-docker run -it --name cicdlab hpreston/devbox:cicdlab
-
 [root@cf95a414877e coding]#
-
 ```
 
-[item]: # (/slide)
+もしそうなっていない場合は以下の手順を実行します
+0. デスクトップアイコンからターミナルを起動する
+0. 以下のコマンドを実行
+```
+[devbox@devbox ~]$ docker run -it --name cicdlab hpreston/devbox:cicdlab
+[devbox@devbox ~]$ docker start -i cicdlab
+[root@c0b2cc5a69fa coding]#  <<< Linux コンテナ内に入った
+```
 
-This will put you at a prompt similar to the above.  The container is a Linux based working environment with the following utilities and software installed and ready to use.
+このコンテナは Linux ベースの作業環境で、以下のツールがすでにインストール済みです
 
 * nano 
 	* Provided as a text editor to use for executing the lab steps
@@ -193,17 +198,20 @@ This will put you at a prompt similar to the above.  The container is a Linux ba
 * docker
   * the container has the docker tools installed, but the `docker run` command above will **NOT** enable you to run additional containers from inside
   * running containers is not a required step in the lab, but if you would like to do so, you can use the following command instead
-
     ```
     docker run -it --name cicdlab -v /var/run/docker.sock:/var/run/docker.sock hpreston/devbox:cicdlab
     ```
-
   * this command will link the docker daemon on the host machine into the container
 * drone cli tools
 
 [item]: # (slide)
 
-If you exit out of the container before completing the lab and want to continue from where you left off, do not execute a `docker run` command again.  This will create a new clean container that lacks any of your work.  Instead follow the below to start the original container.
+もしコンテナから抜けてしまった場合、`docker run` コマンドは実行しないでください
+実行してしまうと、それまでの作業内容が消え、新しいコンテナが起動してしまいます
+<!-- If you exit out of the container before completing the lab and want to continue from where you left off, do not execute a `docker run` command again.  This will create a new clean container that lacks any of your work.  
+ -->
+その代わりに以下を実行して、停止中のコンテナがあるかどうか確認します
+<!-- Instead follow the below to start the original container. -->
 
 ```
 # Verify that you have  a container in a stopped state
@@ -211,6 +219,8 @@ docker ps -a
 
 CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS                        PORTS               NAMES
 cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes ago       Exited (0) 10 seconds ago                         cicdlab
+
+----
 
 # Restart your stopped container
 docker start -i cicdlab
@@ -224,31 +234,66 @@ docker start -i cicdlab
 
 ## Lab Environment Details
 
-Your instructor will provide you an TXT file with this content needed to complete the lab.  
+今回のラボ環境の情報は以下の通りです
+ラボを進める中で必要なので適宜参照してください
+
+<!-- Your instructor will provide you an TXT file with this content needed to complete the lab.   -->
 
 ```
 # CICD Learning Lab Infrastructure Details
 
-# Lab Guide 
-https://github.com/imapex-training/cicd_learning_lab/blob/master/README.md
+# Lab Guide
+改変版: https://github.com/radiantmarch/cicd_learning_lab 
+オリジナル: https://github.com/imapex-training/cicd_learning_lab/blob/master/README.md
 
 # Build Server
-drone server address: 
+drone server address: http://drone.lab.apps.imapex.io/
 
 # Target Cloud Infrastructure
-Mantl Control Server Address: 
-Mantl Username: 
-Mantl Password: 
-Mantl Application Domain: 
+Mantl Control Server Address: control.sandbox.imapex.io
+Mantl Username: CICD1
+Mantl Password: CICD1
+Mantl Application Domain: sandbox.imapex.io
 
 # Spark Room Info
-Spark Room Name: 
-Spark RoomId: 
+Spark Room Name: <当日講師が説明>
+Spark RoomId: <当日講師が説明>. "CICD ハンズオン用" ルームの場合は "
+SPARK_TOKEN: <下の説明参照>	
+```
+
+## Spark SPARK_TOKEN の取得方法
+SPARK_TOKEN は https://developer.ciscospark.com/# にログインして自分の写真をクリックすると、表示されます
+=> 手元にコピーしておいてください
+
+## (参考) Spark RoomId の取得方法
+いろいろな方法があるようですが、Mac の場合 Terminal を開いて以下を実行すればゲットできます
+```
+$
+$ SPARK_TOKEN=<自分のトークン>
+$ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}"
+<< これで Room 一覧が json 形式で表示される
+
+<< 一覧の中から Room 名の含まれるエントリを探し、
+# jq コマンドが使える場合は
+$ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}" | jq . -a rooms.txt
+<< テキストに書き出して検索すると見やすい
+<< 出力例
+    {
+      "id": "Y2lzY29zcGFyazovL3VzL1JPT00vYTNhNjA4YjAtZjQyYS0xMWU2LWEwMDItMWY2MWUxNDU5ZTcy",
+      "title": "CICD ハンズオン用",
+      "type": "group",
+      "isLocked": false,
+      "lastActivity": "2017-02-16T09:31:57.395Z",
+      "teamId": "Y2lzY29zcGFyazovL3VzL1RFQU0vYzc5ZmRhYzAtYzU5NS0xMWU2LWJiMGMtOGIyMDY3OTcyYzZl",
+      "creatorId": "Y2lzY29zcGFyazovL3VzL1BFT1BMRS9iNWNmOTM5YS03ZWMwLTRkM2EtOGYzNy1kMjQzNWIyMjVkNzk",
+      "created": "2017-02-16T09:31:05.301Z"
+    },
 ```
 
 [item]: # (/slide)
 
-For this lab you will be leveraging a Lab Mantl Instance and Drone Build Server.  Your lab admin will provide the following information.  Make a note of these details as you will need them periodically during the following lab exercises.
+
+<!-- For this lab you will be leveraging a Lab Mantl Instance and Drone Build Server.  Your lab admin will provide the following information.  Make a note of these details as you will need them periodically during the following lab exercises.
 
 **_Before beginning this step, be sure to be at a command line prompt from your prepared working environment.  This will either be your local machine, or within the provided container._**
 
@@ -271,11 +316,17 @@ cf95a414877e        hpreston/devbox:cicdlab       "/bin/bash"         2 minutes 
 docker start -i cicdlab
 
 [root@cf95a414877e coding]#
-```
+``` -->
 
 [item]: # (slide)
 
+
+---
+
 # Environment Prep
+
+以下はコンテナ内で作業します
+SSH で Virtual Box VM にログインして実施しても OK
 
 With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration.
 
@@ -284,6 +335,8 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 [item]: # (slide)
 
 ## Forking the cicd_demoapp GitHub Repo
+
+今回デプロイするアプリ cicd_demoapp のソースを GitHub 上で Folk します
 
 ![GitHub Fork](images/github_fork.png)
 
@@ -308,7 +361,8 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 [item]: # (slide)
 
 **Cloning**
-    
+※ コンテナ内での作業
+
 ```
 # if you don't have a local directory where you keep projects, create one
 mkdir ~/coding
@@ -377,6 +431,8 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 [item]: # (slide)
 
 ### Steps
+※ コンテナ内での作業
+
 1. **Make sure the lab administrator has enabled your GitHub account on the lab server.**
 2. Navigate to the drone server address provided by the lab administrator, and click **Login**.
 
@@ -438,6 +494,8 @@ cd ~/coding/cicd_demoapp
 [item]: # (slide)
 
 ### Steps
+※ コンテナ内での作業
+
 1. The drone utilities on your laptop need to know the address and access information for the drone server you are using.  We use session environment variables for this. You will replace the variable's value with the information the lab admin gives you. The follow code can be copied and pasted directly into a terminal window if you'd like to do that, but you can also just type in the line that doesn't start with the hash mark.
 
     ```
