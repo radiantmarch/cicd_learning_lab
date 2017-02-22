@@ -54,7 +54,10 @@ A slide show version of this presentation is available at this link: [CICD Learn
 
 [item]: # (/slide)
 
-This lab is intended to be an introduction to setting up a very basic CI/CD (Continuous Integration/Continuous Delivery) Pipeline.  There are many different technologies and methods that can be used for CI/CD, in this lab we will use:
+このラボはベーシックな CI/CD(Continuous Integration/Continuous Delivery) パイプラインのイントロダクションとなっています。CI/CD には様々なツールが利用可能ですが、このラボでは以下を利用します
+
+<!-- This lab is intended to be an introduction to setting up a very basic CI/CD (Continuous Integration/Continuous Delivery) Pipeline.  There are many different technologies and methods that can be used for CI/CD, in this lab we will use:
+ -->
 
 * Cisco's Mantl Container Stack - [Mantl.io](http://mantl.io) which includes:
   * Docker Container Engine - [Docker](http://www.docker.com)
@@ -220,7 +223,7 @@ SPARK_TOKEN は https://developer.ciscospark.com/# にログインして自分�
 ## (参考) Spark RoomId の取得方法
 ＜当日講師が説明＞
 
-以下は参考情報ですので実施の必要はありません
+※ 以下は参考情報ですので実施の必要はありません.
 
 いろいろな方法があるようですが、Mac の場合 Terminal を開いて以下を実行すればゲットできます
 ```
@@ -260,7 +263,8 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 	* Tips: SSH で Virtual Box VM にログインして実施しても OK. 
 	(別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
 
-With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration.
+すべての Prerequisites が完了したら、ラボを開始できます。まず我々は、新しいアプリケーションコードのレポ、コンテナのレポジトリ、そして Continuous Integration サーバ設定を行います
+<!-- With all the pre-reqs completed, you are ready to start the lab.  We'll start by setting up our new application code repo, container repository, and continuous integration server configuration. -->
 
 [item]: # (/slide)
 
@@ -268,7 +272,7 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 
 ## Forking the cicd_demoapp GitHub Repo
 
-今回デプロイするアプリ cicd_demoapp のソースを GitHub 上で Fork します
+ここでは今回デプロイするアプリ cicd_demoapp のソースを GitHub 上で Fork します。以下の Steps を順番に実行してください。
 
 ![GitHub Fork](images/github_fork.png)
 
@@ -277,8 +281,8 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 [item]: # (slide)
 
 ### Steps
-1. Log into GitHub and visit the demo app repo [imapex-training/cicd_demoapp](https://github.com/imapex-training/cicd_demoapp)
-2. Click **Fork** to create a copy of the repo in your account
+1. GitHub にログインし、デモ用アプリのレポに行きます。<!-- Log into GitHub and visit the demo app repo --> [imapex-training/cicd_demoapp](https://github.com/imapex-training/cicd_demoapp)
+2. 右上の **Fork** を押して、このレポのコピーを自分のアカウントに作成します <!-- Click **Fork** to create a copy of the repo in your account -->
 
     ![GitHub Fork](images/github_fork.png)
 
@@ -286,15 +290,17 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 
 [item]: # (slide)
 
-3. Make a local clone of **YOUR** repo on your laptop.  Do NOT clone the `imapex-training/cicd_demoapp` repo. In this case, we will create a directory called "coding". If you choose to deviate from that directory name, just remember what directory you created for your local repo, as this will be used multiple times through the lab. 
+3. いま作成した **自分の** レポを、自分の Laptop (VM) にクローンします。元の `imapex-training/cicd_demoapp` をクローンしないでください。今回はクローン先として、"coding" という名前のディレクトリを作成し、その中にクローンしています。異なるディレクトリを利用する場合は、場所を覚えておいてください。このあとの作業でも何度も参照することになります
+<!-- Make a local clone of **YOUR** repo on your laptop.  Do NOT clone the `imapex-training/cicd_demoapp` repo. In this case, we will create a directory called "coding". If you choose to deviate from that directory name, just remember what directory you created for your local repo, as this will be used multiple times through the lab. 
+ -->
 
 [item]: # (/slide)
 
 [item]: # (slide)
 
 **Cloning**
-
 <!-- ※ コンテナ内での作業 -->
+以下がクローン手順です
 
 ```
 # if you don't have a local directory where you keep projects, create one
@@ -314,8 +320,8 @@ git clone https://github.com/USERNAME/cicd_demoapp
 [item]: # (slide)
 
 ## What is "cicd_demoapp"
-
-Here are some basic details about the demoapp we are building.  
+クローンしてきた "cicd_demoapp" の詳細は、以下のようなものです
+<!-- Here are some basic details about the demoapp we are building.   -->
 
 * Web Application written in Python using Flask Framework 
 * It's a "Hello World" Application
@@ -323,13 +329,14 @@ Here are some basic details about the demoapp we are building.
 * Includes test cases for full coverage
 * Includes Installation Scripts
 
-Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://github.com/imapex-training/cicd_demoapp)
+ソースコードは以下の場所にあります [imapex-training/cicd_demoapp](https://github.com/imapex-training/cicd_demoapp)
 
 [item]: # (/slide)
 
 [item]: # (slide)
     
 ## Create Docker Repository 
+次に Docker のレポジトリを作成します
 
 ![Docker Hub New Repo](images/docker_hub_new_repo.png)
 
@@ -338,8 +345,8 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 [item]: # (slide)
 
 ### Steps
-1. Log into [hub.docker.com](http://hub.docker.com) with your account
-2. Click the blue **Create Repository** button in the upper right corner
+1. Docker Hub に **自分のアカウントで** ログインしてください [hub.docker.com](http://hub.docker.com)
+2. 画面右上の 青い **Create Repository** ボタンを押します <!-- button in the upper right corner -->
 
     ![Docker Hub New Repo](images/docker_hub1.png)
 
@@ -347,7 +354,7 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 
 [item]: # (slide)
 
-3. Name the repo _cicd\_demoapp_ and provide a short description.
+3. レポの名前は  _cicd\_demoapp_ とし、簡単な Description をつけて下さい <!-- and provide a short description. -->
 
     ![Docker Hub New Repo](images/docker_hub_new_repo.png)
 
@@ -366,18 +373,19 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 ### Steps
 
 1. **Make sure the lab administrator has enabled your GitHub account on the lab server.** (今回はスキップしてOK)
-2. Navigate to the drone server address provided by the lab administrator, and click **Login**.
+2. 講師から与えられた Drone サーバの URL を開き、**Login** を押して下さい <!-- Navigate to the drone server address provided by the lab administrator, and click **Login**. -->
 
     ![Drone Login](images/drone_login.png)
 
     * http://drone.lab.apps.imapex.io/
+    * ※ 講師から与えられた URL と違う場合は、そちらを開いて下さい
 
 [item]: # (/slide)
 
 [item]: # (slide)
 
-3. Drone uses GitHub for authentication, so you will either be prompted to log into your account, and then authorize drone, or simply authorize drone if you're already logged into GitHub.
-4. Once you've logged in, click the **Available Repositories** tab in the upper right corner.
+3. Drone は GitHub を認証に利用します。そのため、Drone の画面では、自分の Github アカウントにログインするように求められます。すでに Github にログインしている場合は、単に Authorize の要求が出るかもしれません。<!-- Drone uses GitHub for authentication, so you will either be prompted to log into your account, and then authorize drone, or simply authorize drone if you're already logged into GitHub. -->
+4. Drone にログインしたら、右上スミの **Available Repositories** タブを開いて下さい
 
     ![Drone Repos](images/drone_available_repos.png)
 
@@ -385,19 +393,20 @@ Checkout the source repo and code:  [imapex-training/cicd_demoapp](https://githu
 
 [item]: # (slide)
 
-5. Find the _cicd\_demoapp_ repo in the list, and click to activate it.  Drone will then setup a WebHook in GitHub to be notified of relevant events, such as as code pushes, automatically.
+5. リストから _cicd\_demoapp_ レポを探し、クリックして Activate してください。Drone は GitHub に WebHook をセットアップします。これによって、関係のあるイベントの Notify を自動的に受けることができるようになります。例えばコードの push 時などです。 <!-- in the list, and click to activate it.  Drone will then setup a WebHook in GitHub to be notified of relevant events, such as as code pushes, automatically. -->
 
     ![Drone Repos](images/drone_active_repos.png)
 
-6. On the **Active Repositories** tab, you should now see a new entry for the cicd_demoapp.  If you click on it, there should be no builds reported yet.
+6. **Active Repositories** タブで, cicd_demoapp のエントリが見えるはずです. それをクリックして、現在は何も build 情報がレポートされていないことを確認してください
 
 [item]: # (/slide)
 
 [item]: # (slide)
 
 ## Build Secrets File
-シークレットファイルを作成します. 必要な情報をメモしてください.
-上記の [ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照してください.
+ここでは、シークレットファイルを作成します. 以下の Steps を進めて下さい。
+講師が共有した必要な情報をメモしておいてください。
+<!-- 上記の [ラボ環境情報](https://github.com/radiantmarch/cicd_learning_lab#lab-environment-details) も参照してください. -->
 
 ```
 environment:
@@ -427,13 +436,18 @@ environment:
 
 [item]: # (/slide)
 
-In order for Drone to be able to do the hard work of testing your application, building a container and publishing it to your registry, notifying your team of status, and deploying the updated code to production, it requires credentials for several systems to act on your behalf.  These details are often referred to as _secrets_ in application development.   As a general rule, you want to protect these details through encryption to maintain their security.  Commiting your passwords to a code repo is never a good idea, but it is especially bad when using a public repo like github.com.
+（解説）Drone があなたのアプリケーションを自動的にテストし、あなたのコンテナを構築し、あなたのレジストリに公開し、あなたのチームに Notify し、更新されたコードを商用環境へデプロイする、といった一連の作業をするためにできるようにするためには、複数のシステムに対するあなたのクレデンシャル情報が必要になります。これらの情報は、よくアプリ開発環境では _secrets_ と呼ばれます。一般に、あなたはこれらの情報を暗号化することでセキュアにしたいと思うはずです。コードのレポにあなたのパスワードを書き込む（commit する) のはよくないアイデアです。特に、github.com のようなパブリックレポを利用している場合は最悪です。
+<!-- 
+In order for Drone to be able to do the hard work of testing your application, building a container and publishing it to your registry, notifying your team of status, and deploying the updated code to production, it requires credentials for several systems to act on your behalf.  These details are often referred to as _secrets_ in application development.   As a general rule, you want to protect these details through encryption to maintain their security.  Commiting your passwords to a code repo is never a good idea, but it is especially bad when using a public repo like github.com. -->
 
-Drone provides a method to create an encrypted file with needed secrets that can be safely included in a code repo.  This is why we installed the drone command line utilities as part of the pre-reqs.
+こうした懸念に対応するため、Drone では、そういった情報を安全にコード レポに含められるように暗号化ファイルを作成する方法を提供しています。準備の段階で、drone のコマンドラインユーティリティをインストールしたのはこのためです。
+<!-- Drone provides a method to create an encrypted file with needed secrets that can be safely included in a code repo.  This is why we installed the drone command line utilities as part of the pre-reqs. -->
 
 [item]: # (slide)
 
-**_In this step you will be entering several commands in a terminal window.  These need to be run from your local repo directory.  If you followed the directions when cloning the repo locally, this command will place you in the correct directory_**
+** ここの作業は、かならずレポをクローンした以下のディレクトリ内で作業をするようにしてください。**
+
+<!-- **_In this step you will be entering several commands in a terminal window.  These need to be run from your local repo directory.  If you followed the directions when cloning the repo locally, this command will place you in the correct directory_** -->
 
 ```
 cd ~/coding/cicd_demoapp
