@@ -109,7 +109,7 @@ Mac / Windows で共通の手順にするため、Virtual Box を利用する方
 
 [item]: # (slide)
 
-### Option: Run the Lab within a Container
+### Run the Lab within a Virtual Box VM
 
 以下のサイトの通り、Virtual Box をインストールして推奨設定を済ませて下さい
 * [Cloud SEVT リデリバリ- CI/CD ハンズオン 事前準備](https://cisco.jiveon.com/docs/DOC-1691497)
@@ -120,7 +120,7 @@ Virtual Box でデプロイした VM (名前: Development Sandbox) を起動し�
 * ユーザ名: devbox
 * パスワード: devbox
 
-最初からコンソールが開いていて、以下のようなプロンプトになっているはずです
+<!-- 最初からコンソールが開いていて、以下のようなプロンプトになっているはずです
 ```
 [root@cf95a414877e coding]#
 ```
@@ -135,8 +135,10 @@ Virtual Box でデプロイした VM (名前: Development Sandbox) を起動し�
 [devbox@devbox ~]$ docker start -i cicdlab
 [root@c0b2cc5a69fa coding]#  <<< Linux コンテナ内に入った
 ```
+ -->
 
-このコンテナは Linux ベースの作業環境で、以下のツールがすでにインストール済み
+<!-- このコンテナは Linux ベースの作業環境で、以下のツールがすでにインストール済み -->
+この VM は Linux ベースの作業環境で、以下のツールがすでにインストール済み
 
 * nano 
 	* Provided as a text editor to use for executing the lab steps
@@ -152,13 +154,17 @@ Virtual Box でデプロイした VM (名前: Development Sandbox) を起動し�
 
 [item]: # (slide)
 
-もしコンテナから抜けてしまった場合、`docker run` コマンドは実行しないでください
+<!-- もしコンテナから抜けてしまった場合、`docker run` コマンドは実行しないでください
 実行してしまうと、それまでの作業内容が消え、新しいコンテナが起動してしまいます
+ -->
 <!-- If you exit out of the container before completing the lab and want to continue from where you left off, do not execute a `docker run` command again.  This will create a new clean container that lacks any of your work.  
  -->
-その代わりに以下を実行して、停止中のコンテナがあるかどうか確認します
+
+<!-- その代わりに以下を実行して、停止中のコンテナがあるかどうか確認します -->
+
 <!-- Instead follow the below to start the original container. -->
 
+<!-- 
 ```
 # Verify that you have  a container in a stopped state
 docker ps -a
@@ -171,6 +177,7 @@ docker start -i cicdlab
 
 [root@cf95a414877e coding]#
 ```
+ -->
 
 [item]: # (/slide)
 
@@ -211,6 +218,10 @@ SPARK_TOKEN は https://developer.ciscospark.com/# にログインして自分�
 => 手元にコピーしておいてください
 
 ## (参考) Spark RoomId の取得方法
+＜当日講師が説明＞
+
+以下は参考情報ですので実施の必要はありません
+
 いろいろな方法があるようですが、Mac の場合 Terminal を開いて以下を実行すればゲットできます
 ```
 $ SPARK_TOKEN=<自分のトークン>
@@ -218,7 +229,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 << これで Room 一覧が json 形式で表示される
 << 一覧の中から Room 名の含まれるエントリを探し、"id" のエントリの値をコピーする
 
-## jq コマンドが使える場合は以下が便利
+### jq コマンドが使える場合は以下が便利
 $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPARK_TOKEN}" | jq . -a rooms.txt
 << テキストに書き出して検索すると見やすい
 << 出力例
@@ -244,7 +255,7 @@ $ curl https://api.ciscospark.com/v1/rooms -X GET -H "Authorization:Bearer ${SPA
 # Environment Prep
 [アジェンダに戻る](https://github.com/radiantmarch/cicd_learning_lab#lab-agenda)
 
-以下はコンテナ内で作業します. 
+以下は VM 内で作業します. 
 
 	* Tips: SSH で Virtual Box VM にログインして実施しても OK. 
 	(別途ポートフォワーディング設定が必要. 参考: http://note.kurodigi.com/vbox-ssh/)
@@ -283,7 +294,7 @@ With all the pre-reqs completed, you are ready to start the lab.  We'll start by
 
 **Cloning**
 
-※ コンテナ内での作業
+<!-- ※ コンテナ内での作業 -->
 
 ```
 # if you don't have a local directory where you keep projects, create one
@@ -433,7 +444,7 @@ cd ~/coding/cicd_demoapp
 [item]: # (slide)
 
 ### Steps
-※ コンテナ内での作業
+<!-- ※ コンテナ内での作業 -->
 
 1. The drone utilities on your laptop need to know the address and access information for the drone server you are using.  We use session environment variables for this. You will replace the variable's value with the information the lab admin gives you. The follow code can be copied and pasted directly into a terminal window if you'd like to do that, but you can also just type in the line that doesn't start with the hash mark.
 
@@ -544,6 +555,13 @@ git commit -m "Added .drone.sec file"
 
 # push changes to GitHub
 git push
+```
+
+※注：git push 時に email と username の設定を促される場合があります
+その場合は以下のように設定を投入してください
+```
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
 ```
 
 [item]: # (/slide)
@@ -1175,6 +1193,7 @@ deploy:
     # push changes to GitHub
     git push
     ```
+
     
 [item]: # (/slide)
 
