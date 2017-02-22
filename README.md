@@ -293,7 +293,7 @@ mkdir ~/coding
 cd ~/coding
 
 # clone your fork of the demo app
-# replace USERNAME with your GitHub user name
+# replace USERNAME with your GitHub user name ※注 USERNAME の部分を自身のユーザ名に書き換えてください
 git clone https://github.com/USERNAME/cicd_demoapp
 
 ```
