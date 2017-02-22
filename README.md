@@ -195,10 +195,10 @@ docker start -i cicdlab
 drone server address: http://drone.lab.apps.imapex.io/
 
 # Target Cloud Infrastructure
-Mantl Control Server Address: control.sandbox.imapex.io
-Mantl Username: CICD1
-Mantl Password: CICD1
-Mantl Application Domain: sandbox.imapex.io
+Mantl Control Server Address: <当日講師が説明>
+Mantl Username: <当日講師が説明>
+Mantl Password: <当日講師が説明>
+Mantl Application Domain: <当日講師が説明>
 
 # Spark Room Info
 Spark Room Name: <当日講師が説明>
@@ -395,9 +395,9 @@ environment:
   DOCKER_USERNAME: 自身で作成した docker.com アカウントのユーザ名
   DOCKER_PASSWORD: 自身で作成した docker.com アカウントのパスワード
   DOCKER_EMAIL: 自身で作成した docker.com アカウントの Email アドレス
-  MANTL_USERNAME: CICD1
-  MANTL_PASSWORD: CICD1
-  MANTL_CONTROL: control.sandbox.imapex.io
+  MANTL_USERNAME: <当日講師が説明>
+  MANTL_PASSWORD: <当日講師が説明>
+  MANTL_CONTROL: <当日講師が説明>
 ```
 
 <!-- 
@@ -1683,10 +1683,10 @@ eg: control.mantl.internet.com
 control.sandbox.imapex.io
 
 What is the username for your Mantl account?
-CICD1
+<当日講師が説明>
 
 What is the password for your Mantl account?
-CICD1
+<当日講師が説明>
 
 What is the your Docker Username?
 (自分のユーザ名)
