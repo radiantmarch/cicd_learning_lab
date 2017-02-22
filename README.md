@@ -1023,12 +1023,14 @@ Installed
 Wait 2-3 minutes for the service to deploy.
 Then you can visit your application at:
 
-http://class-hpreston.mantl.domain.com/hello/world
-
+http://<Mantl Control Server Address>/hello/world
+※ 実際の Terminal で返ってきた URL にアクセスしてください
 
 You can also watch the progress from the GUI at:
 
-https://control.mantl.domain.com/marathon
+https://<Mantl Control Server Address>/marathon
+※ 実際の Terminal で返ってきた URL にアクセスしてください
+
 ```
     
 [item]: # (/slide)
