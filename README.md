@@ -927,19 +927,19 @@ Please provide the following details on your lab environment.
 
 What is the address of your Mantl Control Server?
 eg: control.mantl.internet.com
-control.mantl.domain.com
+<当日講師が説明>
 
 What is the username for your Mantl account?
-admin
+<当日講師が説明>
 
 What is the password for your Mantl account?
-**HIDDEN**
+<当日講師が説明>
 
 What is the your Docker Username?
-hpreston
+<当日講師が説明>
 
 What is the Lab Application Domain?
-mantl.domain.com
+<当日講師が説明>
 
 
 ***************************************************
